@@ -26,10 +26,6 @@ jobs:
         with:
           citation-path: "1.2.0/pass/key-complete/CITATION.cff"
       # These should fail
-      - name: Fail CITATION.cff 3
-        uses: dieghernan/cff-validator@v1
-        with:
-          citation-path: "1.2.0/fail/ls1mardyn/ls1-mardyn-invalid-author-array/CITATION.cff"
       - name: Fail CITATION.cff 4
         uses: dieghernan/cff-validator@v1
         with:
