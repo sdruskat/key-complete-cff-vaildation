@@ -1,0 +1,44 @@
+on:
+  push
+
+name: CITATION.cff
+jobs:
+  Validate-CITATION-cff:
+    runs-on: ubuntu-latest
+    name: Validate CITATION.cff
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      RSPM: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      # This is needed for workflows running on
+      # ubuntu-20.04 or later
+      - name: Install V8
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get install -y libv8-dev
+      # This should pass
+      - name: Valid CITATION.cff
+        uses: dieghernan/cff-validator@v1
+        with:
+          citation-path: "1.2.0/pass/key-complete/CITATION.cff"
+      # These should fail
+      - name: Fail CITATION.cff - Addtl key
+        uses: dieghernan/cff-validator@v1
+        with:
+          citation-path: "1.2.0/fail/additional-key/CITATION.cff"
+      - name: Fail CITATION.cff 2
+        uses: dieghernan/cff-validator@v1
+        with:
+          citation-path: "1.2.0/fail/ls1mardyn/ls1-mardyn/CITATION.cff"
+      - name: Fail CITATION.cff 3
+        uses: dieghernan/cff-validator@v1
+        with:
+          citation-path: "1.2.0/fail/ls1mardyn/ls1-mardyn-invalid-author-array/CITATION.cff"
+      - name: Fail CITATION.cff 4
+        uses: dieghernan/cff-validator@v1
+        with:
+          citation-path: "1.2.0/fail/tue-excellent-buildings/bso-toolbox-invalid-date/CITATION.cff"
