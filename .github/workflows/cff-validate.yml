@@ -26,10 +26,6 @@ jobs:
         with:
           citation-path: "1.2.0/pass/key-complete/CITATION.cff"
       # These should fail
-      - name: Fail CITATION.cff - Addtl key
-        uses: dieghernan/cff-validator@v1
-        with:
-          citation-path: "1.2.0/fail/additional-key/CITATION.cff"
       - name: Fail CITATION.cff 2
         uses: dieghernan/cff-validator@v1
         with:
