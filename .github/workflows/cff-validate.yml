@@ -25,8 +25,3 @@ jobs:
         uses: dieghernan/cff-validator@v1
         with:
           citation-path: "1.2.0/pass/key-complete/CITATION.cff"
-      # These should fail
-      - name: Fail CITATION.cff 4
-        uses: dieghernan/cff-validator@v1
-        with:
-          citation-path: "1.2.0/fail/tue-excellent-buildings/bso-toolbox-invalid-date/CITATION.cff"
